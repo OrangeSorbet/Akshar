@@ -1,0 +1,241 @@
+Great — this is the **core screen** of Akshar.
+I’ll design the **Font Editor (Glyph Grid)** with the same clarity and restraint.
+
+Again: **no code**, just **UI + behavior + intent**.
+
+---
+
+# ✒️ Akshar — Font Editor (Glyph Grid)
+
+This screen appears **after clicking a font card** on the Home Page.
+
+---
+
+## 1️⃣ Purpose of the Font Editor
+
+This screen answers:
+
+> *Which characters exist in this font, and which ones are done?*
+
+It is **not** for drawing yet — it’s for **managing glyphs**.
+
+---
+
+## 2️⃣ What This Screen Represents
+
+* One `.varn` font project
+* One script (Latin / Devanagari / Symbols)
+* A fixed set of characters (Unicode-based)
+
+Each cell = **one glyph slot**.
+
+---
+
+## 3️⃣ Overall Layout
+
+### Structure: **Top Bar + Sidebar + Grid**
+
+```
+┌────────────────────────────────────────┐
+│ ← MyFont (Devanagari)      ☰          │
+├───────┬────────────────────────────────┤
+│ ☰     │                                │
+│ Undo  │   [ Glyph ] [ Glyph ] [ Glyph ]│
+│ Redo  │   [ Glyph ] [ Glyph ] [ Glyph ]│
+│ Save  │   [ Glyph ] [ Glyph ] [ Glyph ]│
+│ Export│                                │
+│       │                                │
+└───────┴────────────────────────────────┘
+```
+
+---
+
+## 4️⃣ Top Bar
+
+### ⬅ Back Button
+
+* Returns to **Home Screen**
+* Autosaves before leaving
+
+---
+
+### Font Info (Center)
+
+* Font name
+* Script name
+* Read-only here
+
+---
+
+### ☰ Menu (Right)
+
+* Save
+* Save As
+* Export (.ttf / .otf)
+* Font info
+* Close font
+
+This keeps destructive actions out of the grid.
+
+---
+
+## 5️⃣ Left Sidebar (Hamburger Panel)
+
+This is a **collapsible vertical menu**.
+
+### Core Actions
+
+* Undo
+* Redo
+* Save progress
+* Export font
+
+Icons + text (clear, not cryptic).
+
+---
+
+## 6️⃣ Glyph Grid (Main Area)
+
+### Grid Design
+
+* Uniform square cells
+* Scrollable vertically
+* Responsive columns
+* Consistent spacing
+
+---
+
+### Glyph Cell Design
+
+Each glyph cell shows:
+
+```
+┌────────────┐
+│   A        │  ← glyph preview (if exists)
+│            │
+├────────────┤
+│ U+0041     │
+│ [Create]   │
+└────────────┘
+```
+
+---
+
+### Glyph States (Very Important)
+
+#### 1. Empty
+
+* Light background
+* “Create Glyph” button visible
+
+#### 2. In Progress
+
+* Preview visible
+* Subtle indicator (dot / border)
+
+#### 3. Completed
+
+* Preview visible
+* Solid border or check mark
+
+These states help users visually track progress.
+
+---
+
+## 7️⃣ Glyph Interactions
+
+### Click Behavior
+
+* Clicking anywhere on the cell opens **Glyph Editor (Canvas)**
+
+---
+
+### Hover Behavior
+
+* Highlight cell
+* Show tooltip:
+
+  * Character
+  * Unicode
+  * Status
+
+---
+
+## 8️⃣ Script-Based Character Sets
+
+The grid is generated from:
+
+* Script profile (Latin / Devanagari)
+* Unicode block definitions
+
+For example:
+
+* Latin: A–Z, a–z, digits, punctuation
+* Devanagari: vowels, consonants, matras
+
+This keeps the grid **predictable and complete**.
+
+---
+
+## 9️⃣ Filtering & Sections (Optional v1+)
+
+You may later add:
+
+* Tabs: Letters / Numbers / Symbols
+* Completion filter
+
+Not required for v1.
+
+---
+
+## 10️⃣ What This Screen Does NOT Do
+
+❌ No drawing
+❌ No brush tools
+❌ No importing images
+❌ No font-wide metrics editing
+
+It’s a **manager**, not an editor.
+
+---
+
+## 11️⃣ Navigation Logic
+
+```
+Home Screen
+   ↓
+Font Editor (Glyph Grid)
+   ↓
+Click Glyph
+   ↓
+Glyph Editor (Canvas)
+```
+
+No loops. No confusion.
+
+---
+
+## 12️⃣ Naming (Lock These)
+
+* Screen: `FontEditor`
+* Component: `GlyphCell`
+* Data: Unicode-driven glyph list
+
+---
+
+## 13️⃣ Why This Design Is Right
+
+✔ Scales to large scripts
+✔ Visual progress tracking
+✔ Minimal cognitive load
+✔ Matches professional font tools
+✔ Easy to implement incrementally
+
+---
+
+## Next Step (The Final Core Screen)
+
+👉 **Glyph Editor (Canvas)**
+This is where drawing, importing, undo/redo live.
+
+Say **“Glyph editor”** and we’ll design it properly.

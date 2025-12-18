@@ -1,0 +1,280 @@
+Alright. This is the **heart of Akshar**.
+We’ll design the **Glyph Editor** with the same discipline: purpose → layout → behavior → rules.
+
+No code. No guessing. This is the **final mental model**.
+
+---
+
+# ✍️ Akshar — Glyph Editor (Canvas)
+
+This screen opens when the user clicks **any glyph** in the Font Editor.
+
+---
+
+## 1️⃣ Purpose of the Glyph Editor
+
+This screen answers **one question**:
+
+> *How do I design this single character correctly?*
+
+It is:
+
+* Focused
+* Precise
+* Tool-driven
+
+Everything else disappears.
+
+---
+
+## 2️⃣ What This Screen Represents
+
+* **One glyph**
+* **One Unicode character**
+* **One drawing canvas**
+
+This is not a font-level view anymore.
+It’s *microscopic*, intentional work.
+
+---
+
+## 3️⃣ Overall Layout
+
+### Structure: **Top Bar + Toolbars + Canvas**
+
+```
+┌──────────────────────────────────────────┐
+│ ←  Glyph: अ  (U+0905)        Save   ☰   │
+├──────────┬───────────────────────────────┤
+│ Tools    │                               │
+│          │                               │
+│ Brush    │                               │
+│ Eraser   │          CANVAS               │
+│ Pen      │                               │
+│ Select   │                               │
+│ Import   │                               │
+│          │                               │
+├──────────┴───────────────────────────────┤
+│ Zoom  |  Baseline | Grid | Undo | Redo  │
+└──────────────────────────────────────────┘
+```
+
+---
+
+## 4️⃣ Top Bar (Context & Navigation)
+
+### ⬅ Back Button
+
+* Returns to **Font Editor**
+* Auto-saves glyph before leaving
+
+No “Are you sure?” spam.
+
+---
+
+### Glyph Info (Center)
+
+* Character: `अ`
+* Unicode: `U+0905`
+* Read-only
+
+This prevents mistakes and confusion.
+
+---
+
+### Right Menu ☰
+
+* Save glyph
+* Clear glyph
+* Reset to empty
+* Help
+
+Dangerous actions live here, not in the canvas.
+
+---
+
+## 5️⃣ Left Toolbar — Drawing Tools
+
+This is **vertical**, icon-first.
+
+### Core Tools (v1)
+
+* 🖌️ Brush (freehand)
+* ✒️ Pen (Bezier / precise)
+* 🧽 Eraser
+* 🔲 Selection / Move
+* 📥 Import Image (PNG/SVG)
+
+Each tool:
+
+* One clear mode
+* One cursor
+* No ambiguity
+
+---
+
+## 6️⃣ Canvas (The Most Important Part)
+
+### Canvas Properties
+
+* Square workspace
+* Vector-based
+* Infinite zoom
+* Pan enabled
+
+This is **not pixels**, this is **paths**.
+
+---
+
+### Visual Guides (Very Important)
+
+Overlay guides:
+
+* Baseline
+* Ascender line
+* Descender line
+* Center line
+* Optional grid
+
+These **do not export**, they are guides only.
+
+---
+
+## 7️⃣ Bottom Toolbar — Precision Controls
+
+### Zoom
+
+* Slider or +/- buttons
+* Mouse wheel support
+
+---
+
+### Grid Toggle
+
+* On / Off
+* Adjustable spacing later
+
+---
+
+### Undo / Redo
+
+* Global glyph undo stack
+* Tool-independent
+
+This must feel **instant**.
+
+---
+
+## 8️⃣ Importing Images (Stickers / Stamps)
+
+### Import Behavior
+
+* Import PNG / SVG
+* Appears centered
+* Can be scaled, rotated
+* Can be traced or left as-is (v1 decision)
+
+This enables:
+
+* Calligraphy scans
+* Handwritten glyphs
+* Tablet workflows
+
+---
+
+## 9️⃣ Glyph Save Logic (Critical)
+
+When is the glyph saved?
+
+✅ Auto-save on:
+
+* Tool switch
+* Back navigation
+* App minimize
+* App close
+
+Manual save exists but is **secondary**.
+
+---
+
+## 🔴 What Happens on Save
+
+* Canvas → SVG
+* Stored as `glyphs/XXXX.svg`
+* Status updated:
+
+  * Empty → In Progress / Complete
+
+---
+
+## 10️⃣ Glyph Status Rules (Clear & Simple)
+
+* **Empty**: no paths
+* **In Progress**: paths exist
+* **Complete**: user marks it complete (optional toggle)
+
+Don’t overthink this in v1.
+
+---
+
+## 11️⃣ What This Screen Does NOT Do
+
+❌ No font export
+❌ No glyph navigation list
+❌ No Unicode changes
+❌ No kerning
+❌ No metrics editing
+
+This is intentional isolation.
+
+---
+
+## 12️⃣ Navigation Flow (Locked)
+
+```
+Font Editor (Grid)
+   ↓
+Glyph Editor (Canvas)
+   ↓
+Back
+   ↓
+Font Editor
+```
+
+No branching. No modal hell.
+
+---
+
+## 13️⃣ Naming (Lock This In)
+
+* Screen: `GlyphEditor`
+* Canvas: `GlyphCanvas`
+* Tools: `BrushTool`, `PenTool`, etc.
+
+Consistency now saves pain later.
+
+---
+
+## 14️⃣ Why This Design Is Correct
+
+✔ Matches professional drawing apps
+✔ Keeps cognitive load low
+✔ Makes glyph design intentional
+✔ Scales to complex scripts
+✔ Easy to implement incrementally
+
+This is **exactly** how a serious glyph editor should feel.
+
+---
+
+## 🧠 You Now Have the Full Core App
+
+You’ve now designed:
+
+* Start Menu
+* Home Screen
+* Font Editor
+* Glyph Editor
+* Save format
+
+That’s the **entire v1 product**, end-to-end.

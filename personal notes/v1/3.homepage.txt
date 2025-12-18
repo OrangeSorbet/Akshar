@@ -1,0 +1,239 @@
+Perfect. We’ll do the **Home Page** with the same clarity and discipline as the Start Menu.
+
+No code yet.
+This is **UX + behavior + intent**.
+
+---
+
+# 🏠 Akshar — Home Page (Font Grid)
+
+This is the screen users see **after pressing “Start”**.
+
+---
+
+## 1️⃣ Purpose of the Home Page
+
+The Home Page answers **one question only**:
+
+> *What fonts am I working on, and what do I do next?*
+
+It should feel:
+
+* Visual
+* Familiar
+* Calm
+* Creative
+
+Think **IbisPaint / Procreate gallery**.
+
+---
+
+## 2️⃣ What This Screen Represents
+
+* A **library of `.varn` font projects**
+* Each tile = **one font**
+* No glyph-level detail yet
+
+This is *project management*, not editing.
+
+---
+
+## 3️⃣ Overall Layout
+
+### Structure: **Top Bar + Grid**
+
+```
+┌────────────────────────────────────┐
+│ Akshar        [+ New Font]  ☰      │
+├────────────────────────────────────┤
+│                                    │
+│  [ Font Card ]  [ Font Card ]       │
+│  [ Font Card ]  [ Font Card ]       │
+│                                    │
+│                                    │
+└────────────────────────────────────┘
+```
+
+---
+
+## 4️⃣ Top Bar (Persistent)
+
+### Left: App Name
+
+* Small “Akshar” text or logo
+* Clicking it does nothing (identity only)
+
+---
+
+### Center (Optional, v2):
+
+* Search bar
+* Filter by script
+
+(Not needed for v1.)
+
+---
+
+### Right: Actions
+
+#### ➕ New Font (Primary)
+
+* Always visible
+* This is the *main CTA*
+
+**Click behavior:**
+
+* Opens *New Font Setup* dialog
+
+---
+
+#### ☰ Menu (Secondary)
+
+Hamburger menu:
+
+* Settings
+* Import `.varn`
+* About
+* Exit
+
+Simple, not crowded.
+
+---
+
+## 5️⃣ Font Grid (Core of the Screen)
+
+### Grid Behavior
+
+* Responsive columns
+* Scrollable vertically
+* Consistent card size
+
+---
+
+### Font Card Design
+
+Each card shows:
+
+```
+┌─────────────────────┐
+│  [ Font Preview ]   │  ← A4-style glyph grid image
+│                     │
+├─────────────────────┤
+│ MyFont              │
+│ Devanagari          │
+│ Last edited: Today  │
+└─────────────────────┘
+```
+
+---
+
+### Font Preview Image
+
+* Generated from `.varn` → `previews/font.png`
+* Shows *all glyphs on a grid*
+* Instantly recognizable
+
+This is what makes the app feel **professional**.
+
+---
+
+### Font Card Interactions
+
+#### Single Click
+
+* Opens **Font Editor (glyph grid)**
+
+#### Right Click / Long Press
+
+Context menu:
+
+* Rename
+* Duplicate
+* Delete
+* Show in folder
+
+(Delete should confirm.)
+
+---
+
+## 6️⃣ Empty State (Very Important)
+
+When no fonts exist:
+
+```
+┌──────────────────────────────┐
+│                              │
+│     No fonts yet              │
+│                              │
+│   [ Create Your First Font ]  │
+│                              │
+└──────────────────────────────┘
+```
+
+* Friendly
+* Encouraging
+* No dead ends
+
+Clicking button = same as “+ New Font”.
+
+---
+
+## 7️⃣ New Font Setup (Triggered Here)
+
+Not the full editor yet.
+
+This dialog asks:
+
+* Font name
+* Script (Latin / Devanagari / Symbols)
+* Units per em (defaulted)
+* Optional: style (Regular)
+
+This creates a **new `.varn` file** and opens it.
+
+---
+
+## 8️⃣ Navigation Logic
+
+```
+Home Screen
+   ↓
+Click Font Card
+   ↓
+Font Editor (Glyph Grid)
+```
+
+No extra steps. No popups.
+
+---
+
+## 9️⃣ What the Home Page Does NOT Do
+
+❌ No glyph editing
+❌ No drawing
+❌ No export
+❌ No font metrics editing
+
+This keeps responsibilities clean.
+
+---
+
+## 10️⃣ Why This Design Is Right
+
+✔ Matches user expectations
+✔ Scales to many fonts
+✔ Works with thumbnails
+✔ Simple to implement
+✔ Looks good even unfinished
+
+This is **exactly** how creative apps handle projects.
+
+---
+
+## 11️⃣ Naming (Lock This In)
+
+* Screen name: `HomeScreen`
+* Component: `FontCard`
+* Data source: `.varn` files in `projects/`
+
+Locking names early helps later.

@@ -1,0 +1,190 @@
+Got it. I’ll restate the **Home Page hamburger menu** with **exact behavior, layout, and interaction rules**, incorporating everything you specified. This is now a **locked UI spec**, not a suggestion.
+
+---
+
+# ☰ Akshar — Home Page Hamburger Menu (Final Spec)
+
+## 1️⃣ Trigger & Position
+
+* **Hamburger icon (☰)**
+
+  * Located at **top-left** of the Home Page top bar
+  * Always visible
+  * Clicking it **opens the menu from left → right**
+
+---
+
+## 2️⃣ Opening Behavior
+
+### Animation
+
+* **Glide / slide animation**
+* Menu slides in **horizontally from the left edge**
+* Duration: ~200–250 ms
+* Easing: *ease-out* (smooth, non-bouncy)
+
+### Overlay
+
+* Home Page content becomes **dimmed** (semi-transparent dark overlay)
+* Overlay covers **entire remaining viewport**
+* No interaction with background while dimmed
+
+### Click Outside
+
+* Clicking **anywhere on the dimmed area**:
+
+  * Closes the hamburger menu
+  * Removes dim
+  * Returns to normal Home Page state
+
+No confirmation dialogs. Instant close.
+
+---
+
+## 3️⃣ Menu Container (Left Panel)
+
+### Size Rules
+
+* Fixed width (e.g. 280–320px)
+* **Never causes horizontal scrolling**
+* App viewport always remains fully visible
+* No horizontal scrollbar, ever
+
+> If screen width is small, the grid shrinks — **never scrolls sideways**.
+
+---
+
+## 4️⃣ Menu Header (Top of Panel)
+
+```
+┌──────────────────────────┐
+│ X                  📌   │
+├──────────────────────────┤
+```
+
+### ❌ Close Icon (Left)
+
+* Closes the menu
+* Same behavior as clicking dim area
+* No save / no prompts
+
+### 📌 Pin Icon (Right)
+
+* Toggles **pinned state**
+
+---
+
+## 5️⃣ Pin Behavior (Opera GX–Style)
+
+### Unpinned (Default)
+
+* Menu overlays Home Page
+* Home Page is dimmed
+* Menu auto-closes when clicking outside
+
+---
+
+### Pinned State
+
+* Menu becomes a **persistent left sidebar**
+* Home Page shifts right into remaining space
+* No dim overlay
+* No closing when clicking outside
+* Menu stays open across navigation *within Home*
+
+This creates a **split view**, exactly like pinned sidebars.
+
+---
+
+### Unpinning
+
+* Clicking 📌 again:
+
+  * Menu slides out
+  * Overlay returns to normal
+  * Home Page re-centers
+
+---
+
+## 6️⃣ Menu Content Layout
+
+### Vertical List
+
+* Single column
+* Scrollable **only vertically if needed**
+* No nested side scrolling
+
+---
+
+### Menu Items (Final v1 Set)
+
+```
+New Font
+Open Font (.varn)
+Recent Fonts ▶
+───────────────
+Open Projects Folder
+Refresh Font List
+───────────────
+Settings
+───────────────
+How to Use
+Keyboard Shortcuts
+About Akshar
+───────────────
+Exit
+```
+
+---
+
+## 7️⃣ Interaction Rules (Important)
+
+* Hover highlights only (no click lag)
+* Click feedback is instant
+* Menu items never overflow horizontally
+* Long text truncates with ellipsis
+* Icons optional but consistent
+
+---
+
+## 8️⃣ Keyboard Behavior (Optional v1+)
+
+* `Esc` closes unpinned menu
+* `Esc` does nothing if pinned
+
+---
+
+## 9️⃣ What Happens on Resize
+
+* Pinned menu keeps its width
+* Home Page grid reflows
+* **Never introduce horizontal scrollbars**
+
+This is a **hard rule**.
+
+---
+
+## 10️⃣ Why This Design Works
+
+✔ Matches modern UX (Opera GX, VS Code)
+✔ Non-intrusive by default
+✔ Powerful when pinned
+✔ Keyboard- and mouse-friendly
+✔ Easy mental model
+✔ Professional feel
+
+You’ve essentially designed a **hybrid drawer + sidebar**, which is excellent.
+
+---
+
+## 11️⃣ Internal Naming (Lock This In)
+
+* Component: `HomeHamburgerMenu`
+* State: `pinned | unpinned`
+* Overlay: `DimOverlay`
+
+---
+
+## 12️⃣ Summary (One Line)
+
+> The Home Page hamburger menu is a **left-sliding drawer** that can be **pinned into a permanent sidebar**, with smooth glide animation, dimmed background, click-outside-to-close behavior, and zero horizontal scrolling.

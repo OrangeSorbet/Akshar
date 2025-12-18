@@ -1,0 +1,18 @@
+MyFont.varn
+│
+├── manifest.json
+├── font.json
+├── glyphs/
+│   ├── 0041.svg
+│   ├── 0042.svg
+│   ├── 0905.svg
+│   └── ...
+│
+├── previews/
+│   ├── font.png
+│   └── glyphs/
+│       ├── 0041.png
+│       └── ...
+│
+└── meta/
+    └── app.json

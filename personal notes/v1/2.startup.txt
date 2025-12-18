@@ -1,0 +1,219 @@
+Perfect. We’ll design this **cleanly and intentionally**, not just “a screen”.
+
+I’ll describe the **first-ever UI** of **Akshar** in terms of:
+
+* Purpose
+* Layout
+* Components
+* Behavior
+* Why this design is correct
+
+No code yet — just **solid UI/UX foundation**.
+
+---
+
+# 🪔 Akshar — First Launch UI (Start / Menu Screen)
+
+This is the screen users see **when they open Akshar**.
+
+---
+
+## 1️⃣ Purpose of the First UI
+
+This screen must answer **3 questions immediately**:
+
+1. *What is Akshar?*
+2. *What can I do here?*
+3. *Where do I start?*
+
+It should **not overwhelm** the user.
+
+---
+
+## 2️⃣ Screen Type
+
+Call it:
+
+> **Start Menu / Welcome Screen**
+
+This is **not** the Home Screen yet.
+
+---
+
+## 3️⃣ Layout (Simple & Calm)
+
+### Overall Layout: **Centered Vertical Stack**
+
+```
+┌──────────────────────────────┐
+│                              │
+│           AKSHAR              │
+│       Font Creator            │
+│                              │
+│   [ Start ]                   │
+│   [ How to Use ]              │
+│   [ Settings ]                │
+│                              │
+│   Recent Project (optional)   │
+│                              │
+│   v0.1                        │
+│                              │
+└──────────────────────────────┘
+```
+
+Dark or neutral background.
+Minimal text.
+Large, confident typography.
+
+---
+
+## 4️⃣ Components Breakdown
+
+### 🔷 App Title
+
+* **Text:** `AKSHAR`
+* Subtitle: `Font Creator` or `Create Fonts by Drawing`
+* Center-aligned
+* This establishes identity instantly
+
+---
+
+### ▶️ Primary Button — **Start**
+
+This is the most important button.
+
+**Behavior:**
+
+* If **no projects exist** → goes to *New Font Setup*
+* If projects exist → goes to *Home Screen (font grid)*
+
+This avoids asking questions too early.
+
+---
+
+### 📘 Secondary Button — **How to Use**
+
+* Opens a **non-blocking overlay**
+* Explains:
+
+  * What a font is
+  * What a glyph is
+  * Basic workflow
+* Can be skipped anytime
+
+This should **never block usage**.
+
+---
+
+### ⚙️ Tertiary Button — **Settings**
+
+* Small
+* Bottom-aligned or icon-based
+* Things like:
+
+  * Theme
+  * Default export path
+  * Autosave
+
+---
+
+### 🕘 Optional: Recent Project Shortcut
+
+Only shown if:
+
+* A `.varn` file exists
+
+Example:
+
+```
+Continue: MyFont.varn
+```
+
+This feels *game-like* and friendly.
+
+---
+
+### 🧾 Footer
+
+* Version number
+* Small and subtle
+
+---
+
+## 5️⃣ What This Screen Does NOT Do (Important)
+
+❌ No font grid
+❌ No glyphs
+❌ No canvas
+❌ No file browsing
+
+This screen is **about intent**, not work.
+
+---
+
+## 6️⃣ Navigation Logic (Very Important)
+
+```
+App Launch
+   ↓
+Start Menu
+   ↓
+(Start)
+   ↓
+Home Screen (Font Grid)
+   ↓
+Font Editor
+```
+
+The user is never confused about:
+
+* Where they are
+* What to do next
+
+---
+
+## 7️⃣ Why This Is the Correct First UI
+
+✔ Familiar (feels like a game / creative tool)
+✔ Calm (not intimidating)
+✔ Brand-focused
+✔ Scales well later
+✔ Easy to implement
+
+Professional tools (Blender, Krita, Unity) follow this pattern for a reason.
+
+---
+
+## 8️⃣ Minimal Qt Implementation Concept (Mental Model)
+
+* One `MainWindow`
+* This screen = one central widget
+* Later screens replace it
+
+No window spawning madness.
+
+---
+
+## 9️⃣ Naming (Lock This In)
+
+Let’s lock the screen names early:
+
+| Screen       | Name          |
+| ------------ | ------------- |
+| First screen | `StartMenu`   |
+| Font grid    | `HomeScreen`  |
+| Glyph grid   | `FontEditor`  |
+| Drawing      | `GlyphEditor` |
+
+Names matter later.
+
+---
+
+## Next Step (Logical Progression)
+
+Next, we should design **Home Screen (Font Grid)** because:
+
+* It defines how `.varn` files live in the app
+* It drives most navigation
+
+👉 Say: **“Home screen”** and we’ll design it just as cleanly.

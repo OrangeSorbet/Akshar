@@ -1,0 +1,152 @@
+Here’s a **clean, compact recap** — no fluff, no missing pieces — so you have a solid mental model of **Akshar**.
+
+---
+
+## 🪔 What *Akshar* Is
+
+**Akshar** is a **desktop font-creation app** where users:
+
+* Create fonts by **drawing each glyph**
+* Work script-by-script (Latin, Devanagari, symbols, etc.)
+* Save progress like a game
+* Export finished fonts as installable `.ttf / .otf`
+
+Think:
+
+> *IbisPaint / Krita* + *Font editor*
+
+---
+
+## 🎯 What You’re Aiming to Build (v1)
+
+### Core Capabilities
+
+* Start screen → Home → Font editor → Glyph editor
+* Grid-based workflow (fonts, glyphs)
+* Draw glyphs on a canvas or import images
+* Undo / redo
+* Save and resume anytime
+* Export fonts
+
+### What v1 is **not**
+
+* No kerning editor
+* No ligatures
+* No variable fonts
+* No hinting
+
+Those are v2+.
+
+---
+
+## 📁 File Structure (Practical, Minimal)
+
+You’re using a **simple, AI-friendly structure**:
+
+```
+akshar/
+│
+├── main.py        # App entry
+├── app.py         # Global state & navigation
+├── ui.py          # All screens & dialogs
+├── canvas.py      # Drawing tools & undo/redo
+├── glyphs.py      # Unicode, glyph sets, metadata
+├── storage.py     # Save/load .varn
+├── export.py      # .ttf / .otf export
+│
+├── assets/        # Icons, themes
+├── projects/      # .varn files
+└── exports/       # Generated fonts
+```
+
+This keeps:
+
+* Few files
+* Large context
+* Easy refactoring later
+
+---
+
+## 📦 `.varn` File (One Per Font)
+
+Each font you create = **one `.varn` file**
+It’s a **ZIP container** that stores everything needed to continue work.
+
+```
+MyFont.varn
+│
+├── manifest.json
+├── font.json
+├── glyphs/
+│   ├── 0041.svg
+│   ├── 0042.svg
+│   └── ...
+├── previews/
+│   ├── font.png
+│   └── glyphs/
+│       └── ...
+└── meta/
+    └── app.json
+```
+
+* `glyphs/` = actual drawings
+* `font.json` = Unicode + font data
+* `meta/` = editor state
+* `previews/` = UI thumbnails
+
+Editable ≠ exported. Clean separation.
+
+---
+
+## 🖥️ UI Flow (Locked In)
+
+```
+App Launch
+↓
+Start Menu
+↓
+Home Screen (font grid)
+↓
+Font Editor (glyph grid)
+↓
+Glyph Editor (canvas)
+```
+
+Each screen has **one clear job**.
+
+---
+
+## 🧠 Key Design Decisions You Made Right
+
+* Desktop-first (Python + Qt)
+* `.varn` as a project/save file
+* Unicode-based glyph identity
+* Simple structure now, scalable later
+* Avoided premature over-architecture
+
+This is how real creative tools start.
+
+---
+
+## 🟢 Where You Are Now
+
+You have:
+
+* A clear product vision
+* A locked project format
+* A sane file structure
+* A defined first UI
+
+You’re **past the idea stage** — this is now an engineering project.
+
+---
+
+## 🔜 Natural Next Steps (Pick One Later)
+
+* Design **Home Screen UI**
+* Define **glyph grid behavior**
+* Design **glyph canvas tools**
+* Write **.varn save/load code**
+* Build **MVP navigation**
+
+Whenever you’re ready, say the word — we’ll build it step by step.

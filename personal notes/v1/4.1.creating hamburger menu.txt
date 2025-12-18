@@ -1,0 +1,128 @@
+## ✅ Corrected Rule (Consistent With Your App)
+
+### **Hamburger icon (☰) appears in the *top-left***
+
+* Same position as:
+
+  * Home Page
+  * Start Menu (if/when added)
+* **Top-left, always**
+* Muscle memory > symmetry
+
+No screen in Akshar should randomly flip the hamburger to the right.
+
+---
+
+## 🔁 Corrected Font Editor Hamburger Menu Spec
+
+Everything else stays the same **except position**.
+
+---
+
+# ☰ Akshar — Font Editor Hamburger Menu (FINAL, Corrected)
+
+## 1️⃣ Placement & Trigger
+
+* Hamburger icon (☰) is in the **top-left of the Font Editor top bar**
+* Clicking it opens the **left-side sliding drawer**
+* Behavior is **identical to Home**
+
+---
+
+## 2️⃣ Opening Behavior (Same as Home)
+
+* Slides in from **left → right**
+* Glide animation (~250 ms, OutCubic)
+* Font Editor content dims when unpinned
+* Clicking dimmed area closes menu
+* No interaction with background
+
+---
+
+## 3️⃣ Pinning Behavior (Same as Home)
+
+* ❌ Close icon (top-left inside menu)
+* 📌 Pin icon (top-right inside menu)
+
+### Unpinned
+
+* Menu floats above editor
+* Overlay active
+* Click outside closes
+
+### Pinned
+
+* Menu becomes a **persistent left sidebar**
+* Glyph grid shifts right
+* No dim overlay
+
+Exactly like Opera GX.
+
+---
+
+## 4️⃣ Menu Container Rules
+
+* Fixed width (~280px)
+* Vertical scroll only
+* **No horizontal scrolling ever**
+* Height matches editor window
+
+---
+
+## 5️⃣ Menu Header Layout
+
+```
+┌──────────────────────────┐
+│ X                  📌   │
+├──────────────────────────┤
+```
+
+---
+
+## 6️⃣ Menu Content (Font-Level Actions Only)
+
+```
+Back
+───────────────
+Save Progress
+Save As…
+───────────────
+Export Font (.ttf)
+Export Font (.otf)
+───────────────
+Font Information
+Script & Unicode Range
+───────────────
+Validate Font
+Generate Preview
+───────────────
+Close Font
+```
+
+---
+
+## 7️⃣ Strict Exclusions
+
+❌ Undo / Redo
+❌ Glyph tools
+❌ Canvas tools
+❌ Per-glyph actions
+
+---
+
+## 8️⃣ Naming (Same Pattern)
+
+* `FontHamburgerMenu`
+* `pinned | floating`
+* Reuse `DimOverlay`
+
+---
+
+## 9️⃣ Why This Is Correct
+
+* Zero cognitive friction
+* One hamburger rule across app
+* Clean separation of concerns
+* Easy to reuse your existing code
+
+---
